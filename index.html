@@ -634,9 +634,89 @@ P.S. If you know someone who needs this, forward them this email. You might be t
   }
 ];
 
+const STARTER_VIDEOS = [
+  {
+    id: 'v1', status: 'idea',
+    title: 'I Left the Mormon Church 21 Years Ago — This Is What I Learned',
+    pain: 'Feeling alone in the aftermath, not knowing what life looks like on the other side',
+    hook: 'Origin story — 21 years of perspective from someone who\'s been through it personally and professionally',
+    notes: 'Personal story: "bad" Mormon at 14, married at 17, left the church, became a licensed therapist in 2014. This is the foundation video.'
+  },
+  {
+    id: 'v2', status: 'idea',
+    title: '5 Signs You\'re Experiencing Religious Trauma (Not Just a Faith Crisis)',
+    pain: 'People don\'t have a name for what they\'re feeling — shame, anxiety, identity loss',
+    hook: 'Warning angle — normalize and name what they\'re going through',
+    notes: 'Pillar: Religious Trauma. Draw on counseling experience. Connect to the assessment lead magnet.'
+  },
+  {
+    id: 'v3', status: 'idea',
+    title: 'Why Leaving the Church Doesn\'t Fix the Trauma',
+    pain: 'People think leaving = healing, but the damage runs deeper than membership',
+    hook: 'Belief breaker — challenges the assumption that leaving is enough',
+    notes: 'Pillar: Religious Trauma. Key message: the church leaves you even after you leave it.'
+  },
+  {
+    id: 'v4', status: 'idea',
+    title: 'The Attachment Style You Developed in Your Religious Community',
+    pain: 'Confusing relationship patterns after leaving — why they can\'t trust, connect, or set limits',
+    hook: 'Education angle — connects attachment theory to religious upbringing',
+    notes: 'Pillar: Attachment Styles. Great crossover between religious trauma and attachment wounds.'
+  },
+  {
+    id: 'v5', status: 'idea',
+    title: 'Anxious Attachment After Religion: Why You\'re Always Waiting to Be Rejected',
+    pain: 'Hypervigilance, people-pleasing, fear of abandonment in relationships',
+    hook: 'Specific pain point — speaks directly to the anxious attachment pattern',
+    notes: 'Pillar: Attachment Styles. Very searchable topic with high audience demand.'
+  },
+  {
+    id: 'v6', status: 'idea',
+    title: 'What Your Childhood Taught You About Love That Wasn\'t True',
+    pain: 'Realizing the emotional blueprint from childhood is causing pain in adult life',
+    hook: 'Reframe angle — the rules you learned about love were wrong, here\'s the truth',
+    notes: 'Pillar: Developmental Trauma. Works for religious AND non-religious audiences.'
+  },
+  {
+    id: 'v7', status: 'idea',
+    title: 'Reparenting Yourself: How to Give Yourself What You Didn\'t Get as a Kid',
+    pain: 'Feeling stuck in patterns from childhood with no idea how to break them',
+    hook: 'How-to angle — practical and hopeful, gives people a tool',
+    notes: 'Pillar: Developmental Trauma. High search demand. Connects to Gen Z audience too.'
+  },
+  {
+    id: 'v8', status: 'idea',
+    title: 'Why Gen Z Is More Traumatized Than They Know (And What to Do About It)',
+    pain: 'Young adults struggling with anxiety, identity, relationships without understanding the root',
+    hook: 'Warning + education angle — speaks to Gen Z and the parents who raised them',
+    notes: 'Pillar: Gen Z Healing. Bridges the gap between your middle-aged audience and younger viewers.'
+  },
+  {
+    id: 'v9', status: 'idea',
+    title: 'The Childhood Wound Behind Your People-Pleasing',
+    pain: 'Exhausted from constantly putting others first, can\'t say no, no sense of self',
+    hook: 'Root cause angle — connects a current behavior to its childhood origin',
+    notes: 'Pillar: Developmental Trauma. Very high search volume. Works across all 4 pillars.'
+  },
+  {
+    id: 'v10', status: 'idea',
+    title: 'Is It Religious Trauma or Just Normal Grief? How to Tell the Difference',
+    pain: 'Confusion and self-doubt — "am I overreacting or is this real?"',
+    hook: 'FAQ angle — answers the question people are already asking themselves',
+    notes: 'Pillar: Religious Trauma. Great for people early in their healing journey. Connects to the assessment.'
+  },
+];
+
 function initEmails() {
   if (emails.length === 0) {
     emails = STARTER_EMAILS.map(e => ({ ...e }));
+    save();
+  }
+}
+
+function initVideos() {
+  if (videos.length === 0) {
+    videos = STARTER_VIDEOS.map(v => ({ ...v }));
     save();
   }
 }
@@ -882,6 +962,7 @@ function escHtml(str) {
 // INIT
 // ============================================================
 initEmails();
+initVideos();
 renderVideos();
 renderEmails();
 renderPrompts();
