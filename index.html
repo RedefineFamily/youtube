@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redefine Family — Creator Hub</title>
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --surface2: #22222f;
+      --border: #2e2e3e;
+      --accent: #7c6af7;
+      --accent2: #c084fc;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+      --green: #4ade80;
+      --yellow: #facc15;
+      --red: #f87171;
+      --blue: #60a5fa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* NAV */
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; gap: 32px; height: 60px; position: sticky; top: 0; z-index: 100; }
+    .logo { font-weight: 700; font-size: 18px; color: var(--accent2); letter-spacing: -0.3px; }
+    .logo span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; gap: 4px; }
+    nav button { background: none; border: none; color: var(--muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.15s; }
+    nav button:hover { color: var(--text); background: var(--surface2); }
+    nav button.active { color: var(--accent2); background: var(--surface2); }
+
+    /* LAYOUT */
+    main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+    .page { display: none; }
+    .page.active { display: block; }
+    h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+
+    /* CARDS */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .card-title { font-size: 15px; font-weight: 600; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.15s; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #6b5ce7; }
+    .btn-ghost { background: none; border: 1px solid var(--border); color: var(--muted); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-danger { background: none; border: 1px solid transparent; color: var(--red); }
+    .btn-danger:hover { background: rgba(248,113,113,0.1); }
+    .btn-sm { padding: 5px 10px; font-size: 12px; }
+
+    /* FORM ELEMENTS */
+    input, textarea, select {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); padding: 9px 12px; font-size: 14px; width: 100%;
+      font-family: inherit; outline: none; transition: border 0.15s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+    label { font-size: 12px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-group { margin-bottom: 14px; }
+    .form-row { display: grid; gap: 12px; }
+    .form-row-2 { grid-template-columns: 1fr 1fr; }
+    .form-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* BADGES */
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+    .badge-idea { background: rgba(96,165,250,0.15); color: var(--blue); }
+    .badge-scripting { background: rgba(250,204,21,0.15); color: var(--yellow); }
+    .badge-filming { background: rgba(192,132,252,0.15); color: var(--accent2); }
+    .badge-editing { background: rgba(251,146,60,0.15); color: #fb923c; }
+    .badge-uploaded { background: rgba(74,222,128,0.15); color: var(--green); }
+
+    /* VIDEO IDEAS */
+    .idea-grid { display: grid; gap: 12px; }
+    .idea-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .idea-item-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .idea-title { font-size: 15px; font-weight: 600; flex: 1; }
+    .idea-meta { font-size: 13px; color: var(--muted); }
+    .idea-actions { display: flex; gap: 4px; }
+
+    /* PIPELINE */
+    .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+    .pipeline-col { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; min-height: 120px; }
+    .pipeline-col-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 10px; }
+    .pipeline-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; font-size: 13px; cursor: pointer; }
+    .pipeline-item:hover { border-color: var(--accent); }
+
+    /* EMAIL SEQUENCE */
+    .email-list { display: flex; flex-direction: column; gap: 12px; }
+    .email-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .email-item-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+    .email-item-header:hover { background: rgba(255,255,255,0.02); }
+    .email-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .email-subject { font-size: 14px; font-weight: 600; flex: 1; }
+    .email-purpose { font-size: 12px; color: var(--muted); }
+    .email-body { padding: 0 16px 16px; display: none; }
+    .email-body.open { display: block; }
+    .email-body textarea { min-height: 180px; }
+    .email-cta-badge { font-size: 11px; background: rgba(124,106,247,0.15); color: var(--accent); padding: 2px 8px; border-radius: 99px; font-weight: 600; }
+
+    /* PROMPT TEMPLATES */
+    .prompt-list { display: flex; flex-direction: column; gap: 12px; }
+    .prompt-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .prompt-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .prompt-name { font-size: 14px; font-weight: 600; }
+    .prompt-text { font-size: 13px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px; line-height: 1.7; white-space: pre-wrap; font-family: inherit; }
+    .copy-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 5px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; }
+    .modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+    .modal-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+
+    /* EMPTY STATE */
+    .empty { text-align: center; padding: 48px 24px; color: var(--muted); }
+    .empty-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty p { font-size: 14px; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+    /* STATS ROW */
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .stat-num { font-size: 28px; font-weight: 700; color: var(--accent2); }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    @media (max-width: 700px) {
+      .pipeline { grid-template-columns: 1fr 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .form-row-2, .form-row-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Redefine Family <span>Creator Hub</span></div>
+  <nav>
+    <button class="active" onclick="showPage('content')">Content</button>
+    <button onclick="showPage('email')">Email Sequence</button>
+    <button onclick="showPage('prompts')">Prompts</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===================== CONTENT PAGE ===================== -->
+  <div id="page-content" class="page active">
+    <h2>Content Planner</h2>
+    <p class="subtitle">Plan your videos from idea to upload — one month at a time.</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" id="stat-ideas">0</div>
+        <div class="stat-label">Video Ideas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-in-progress">0</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-uploaded">0</div>
+        <div class="stat-label">Published</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Production Pipeline</div>
+        <button class="btn btn-primary btn-sm" onclick="openAddVideo()">+ Add Video</button>
+      </div>
+      <div class="pipeline" id="pipeline">
+        <div class="pipeline-col">
+          <div class="pipeline-col-title">💡 Idea</div>
+          <div id="col-idea"></div>
+        </div>
+        <div class="pipeline-col">
+          <div class="pipeline-col-title">✍️ Scripting</div>
+          <div id="col-scripting"></div>
+        </div>
+        <div class="pipeline-col">
+          <div class="pipeline-col-title">🎥 Filming</div>
+          <div id="col-filming"></div>
+        </div>
+        <div class="pipeline-col">
+          <div class="pipeline-col-title">✂️ Editing</div>
+          <div id="col-editing"></div>
+        </div>
+        <div class="pipeline-col">
+          <div class="pipeline-col-title">✅ Uploaded</div>
+          <div id="col-uploaded"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Video Idea Bank</div>
+      </div>
+      <div id="idea-bank" class="idea-grid"></div>
+      <div id="idea-empty" class="empty" style="display:none">
+        <div class="empty-icon">💡</div>
+        <p>No ideas yet. Hit "+ Add Video" to capture your first one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== EMAIL PAGE ===================== -->
+  <div id="page-email" class="page">
+    <h2>Welcome Email Sequence</h2>
+    <p class="subtitle">Your nurture sequence — triggered when someone downloads the Religious Trauma Assessment. Leads to workshop enrollment.</p>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;">
+          <label>Kit (ConvertKit) Sequence Name</label>
+          <input type="text" id="sequence-name" placeholder="e.g. Religious Trauma Assessment Welcome" />
+        </div>
+        <div style="flex:1;min-width:200px;">
+          <label>Lead Magnet Name</label>
+          <input type="text" id="lead-magnet" placeholder="e.g. Religious Trauma Assessment" value="Religious Trauma Assessment" />
+        </div>
+        <div style="flex:1;min-width:160px;">
+          <label>Workshop Name</label>
+          <input type="text" id="workshop-name" placeholder="e.g. Healing After Religion" />
+        </div>
+      </div>
+    </div>
+
+    <div class="email-list" id="email-list"></div>
+
+    <div style="margin-top:16px;display:flex;gap:8px;">
+      <button class="btn btn-primary" onclick="openAddEmail()">+ Add Email</button>
+      <button class="btn btn-ghost" onclick="exportEmails()">Export to Text</button>
+    </div>
+  </div>
+
+  <!-- ===================== PROMPTS PAGE ===================== -->
+  <div id="page-prompts" class="page">
+    <h2>ChatGPT Prompt Templates</h2>
+    <p class="subtitle">Copy these into ChatGPT to speed up your content workflow. Customize the [BRACKETS] before using.</p>
+
+    <div class="prompt-list" id="prompt-list"></div>
+  </div>
+
+</main>
+
+<!-- ADD VIDEO MODAL -->
+<div class="modal-overlay" id="modal-video">
+  <div class="modal">
+    <h3 id="modal-video-title">Add Video</h3>
+    <input type="hidden" id="edit-video-id" />
+    <div class="form-group">
+      <label>Video Title / Working Title</label>
+      <input type="text" id="v-title" placeholder="e.g. 5 Signs You're Experiencing Religious Trauma" />
+    </div>
+    <div class="form-row form-row-2">
+      <div class="form-group">
+        <label>Target Audience Pain</label>
+        <input type="text" id="v-pain" placeholder="e.g. Shame, confusion, spiritual crisis" />
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="v-status">
+          <option value="idea">💡 Idea</option>
+          <option value="scripting">✍️ Scripting</option>
+          <option value="filming">🎥 Filming</option>
+          <option value="editing">✂️ Editing</option>
+          <option value="uploaded">✅ Uploaded</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Hook / Angle</label>
+      <input type="text" id="v-hook" placeholder="e.g. 'Warning' angle — what people need to stop doing" />
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea id="v-notes" placeholder="Key points, personal story to include, resources..."></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-video')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveVideo()">Save Video</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD EMAIL MODAL -->
+<div class="modal-overlay" id="modal-email">
+  <div class="modal">
+    <h3 id="modal-email-title">Add Email</h3>
+    <input type="hidden" id="edit-email-id" />
+    <div class="form-row form-row-2">
+      <div class="form-group">
+        <label>Email #</label>
+        <input type="number" id="e-num" min="1" placeholder="1" />
+      </div>
+      <div class="form-group">
+        <label>Send Delay</label>
+        <input type="text" id="e-delay" placeholder="e.g. Immediately, Day 3, Day 7" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Subject Line</label>
+      <input type="text" id="e-subject" placeholder="e.g. Your assessment results — what they mean" />
+    </div>
+    <div class="form-group">
+      <label>Purpose of This Email</label>
+      <input type="text" id="e-purpose" placeholder="e.g. Deliver the lead magnet + build trust" />
+    </div>
+    <div class="form-group">
+      <label>Call to Action</label>
+      <input type="text" id="e-cta" placeholder="e.g. Reply and tell me your biggest struggle" />
+    </div>
+    <div class="form-group">
+      <label>Email Body</label>
+      <textarea id="e-body" style="min-height:200px;" placeholder="Write your email here..."></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-email')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEmail()">Save Email</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+let videos = JSON.parse(localStorage.getItem('rf_videos') || '[]');
+let emails = JSON.parse(localStorage.getItem('rf_emails') || '[]');
+
+function save() {
+  localStorage.setItem('rf_videos', JSON.stringify(videos));
+  localStorage.setItem('rf_emails', JSON.stringify(emails));
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+// ============================================================
+// VIDEOS
+// ============================================================
+function openAddVideo() {
+  document.getElementById('modal-video-title').textContent = 'Add Video';
+  document.getElementById('edit-video-id').value = '';
+  ['v-title','v-pain','v-hook','v-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('v-status').value = 'idea';
+  openModal('modal-video');
+}
+
+function openEditVideo(id) {
+  const v = videos.find(x => x.id === id);
+  if (!v) return;
+  document.getElementById('modal-video-title').textContent = 'Edit Video';
+  document.getElementById('edit-video-id').value = id;
+  document.getElementById('v-title').value = v.title;
+  document.getElementById('v-pain').value = v.pain || '';
+  document.getElementById('v-hook').value = v.hook || '';
+  document.getElementById('v-notes').value = v.notes || '';
+  document.getElementById('v-status').value = v.status;
+  openModal('modal-video');
+}
+
+function saveVideo() {
+  const id = document.getElementById('edit-video-id').value;
+  const data = {
+    title: document.getElementById('v-title').value.trim(),
+    pain: document.getElementById('v-pain').value.trim(),
+    hook: document.getElementById('v-hook').value.trim(),
+    notes: document.getElementById('v-notes').value.trim(),
+    status: document.getElementById('v-status').value,
+  };
+  if (!data.title) { alert('Add a title first.'); return; }
+  if (id) {
+    const idx = videos.findIndex(x => x.id === id);
+    videos[idx] = { ...videos[idx], ...data };
+  } else {
+    videos.push({ ...data, id: Date.now().toString() });
+  }
+  save();
+  renderVideos();
+  closeModal('modal-video');
+}
+
+function deleteVideo(id) {
+  if (!confirm('Delete this video?')) return;
+  videos = videos.filter(x => x.id !== id);
+  save();
+  renderVideos();
+}
+
+function renderVideos() {
+  const statuses = ['idea','scripting','filming','editing','uploaded'];
+  statuses.forEach(s => { document.getElementById('col-' + s).innerHTML = ''; });
+
+  const bank = document.getElementById('idea-bank');
+  const empty = document.getElementById('idea-empty');
+  bank.innerHTML = '';
+
+  if (videos.length === 0) {
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    videos.forEach(v => {
+      // Pipeline card
+      const col = document.getElementById('col-' + v.status);
+      if (col) {
+        const el = document.createElement('div');
+        el.className = 'pipeline-item';
+        el.textContent = v.title;
+        el.onclick = () => openEditVideo(v.id);
+        col.appendChild(el);
+      }
+
+      // Idea bank row
+      const item = document.createElement('div');
+      item.className = 'idea-item';
+      item.innerHTML = `
+        <div class="idea-item-top">
+          <div class="idea-title">${escHtml(v.title)}</div>
+          <span class="badge badge-${v.status}">${v.status}</span>
+        </div>
+        ${v.pain ? `<div class="idea-meta">🎯 Pain: ${escHtml(v.pain)}</div>` : ''}
+        ${v.hook ? `<div class="idea-meta">💡 Hook: ${escHtml(v.hook)}</div>` : ''}
+        ${v.notes ? `<div class="idea-meta" style="color:var(--muted);font-size:12px;">${escHtml(v.notes)}</div>` : ''}
+        <div class="idea-actions">
+          <button class="btn btn-ghost btn-sm" onclick="openEditVideo('${v.id}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteVideo('${v.id}')">Delete</button>
+        </div>
+      `;
+      bank.appendChild(item);
+    });
+  }
+
+  // Stats
+  document.getElementById('stat-ideas').textContent = videos.length;
+  document.getElementById('stat-in-progress').textContent = videos.filter(v => ['scripting','filming','editing'].includes(v.status)).length;
+  document.getElementById('stat-uploaded').textContent = videos.filter(v => v.status === 'uploaded').length;
+}
+
+// ============================================================
+// EMAILS
+// ============================================================
+const STARTER_EMAILS = [
+  {
+    id: 's1', num: 1, delay: 'Immediately',
+    subject: 'Your Religious Trauma Assessment — here\'s what to do next',
+    purpose: 'Deliver the lead magnet + set expectations for the sequence',
+    cta: 'Download your assessment and reply with one word: how are you feeling right now?',
+    body: `Hi [First Name],
+
+Your Religious Trauma Assessment is ready — download it here: [LINK]
+
+I created this tool because I spent years not having a name for what I was experiencing. I was a faithful Mormon, a licensed counselor, and still completely lost when my beliefs started unraveling.
+
+The assessment won't diagnose you. What it will do is help you see patterns you may have been too close to notice.
+
+Take 10 minutes with it somewhere quiet.
+
+Then reply and tell me: what's one word for how you're feeling right now? I read every reply.
+
+More coming soon —
+Crystal
+
+P.S. If you found me through YouTube, thank you. The channel exists because people like you deserve real conversations about this.`
+  },
+  {
+    id: 's2', num: 2, delay: 'Day 2',
+    subject: 'The thing nobody tells you about religious trauma',
+    purpose: 'Normalize their experience + build trust',
+    cta: 'Watch this short video: [YouTube link to relevant video]',
+    body: `Hi [First Name],
+
+Here's what nobody told me when I left the Mormon church:
+
+Religious trauma isn't about being weak. It's about being human in a system that didn't leave room for your full humanity.
+
+The shame, the grief, the identity crisis — those aren't signs you're broken. They're signs you're healing.
+
+I see this every week in my counseling work. High-functioning, intelligent people who feel like they're going crazy because they're grieving a community, a worldview, and sometimes an entire family.
+
+You're not going crazy.
+
+If you want to go deeper on this, I made a video on exactly this topic: [LINK]
+
+Talk soon,
+Crystal`
+  },
+  {
+    id: 's3', num: 3, delay: 'Day 4',
+    subject: 'My story (the short version)',
+    purpose: 'Personal connection + show the path forward',
+    cta: 'Subscribe to the YouTube channel for weekly support',
+    body: `Hi [First Name],
+
+I was a devoted Mormon for [X] years. I did everything right — served, prayed, counseled others.
+
+And then the walls started coming down.
+
+What made it harder: I was a licensed mental health counselor. I was supposed to have the tools. And I was still blindsided by how deep the damage ran.
+
+What got me through was a combination of professional training and very personal unlearning. I had to grieve the faith, the community, and the version of myself that was built inside it.
+
+That's why I started Redefine Family. Not to tell you what to believe. But to give you a map out of the fog.
+
+Every week on YouTube I share what I wish I'd had: honest conversations, practical tools, and proof that a full life is waiting on the other side.
+
+Subscribe here if you haven't: [YouTube Channel Link]
+
+I'll be back in a few days with something that might help with the hardest part.
+
+Crystal`
+  },
+  {
+    id: 's4', num: 4, delay: 'Day 7',
+    subject: 'The 3 stages most people go through (which one are you in?)',
+    purpose: 'Educate + create self-identification with the journey',
+    cta: 'Reply and tell me which stage resonates most',
+    body: `Hi [First Name],
+
+In my counseling work, I see most people move through 3 stages after leaving a high-control religion:
+
+Stage 1 — Survival. You're in shock. The scaffolding is gone and you're just trying to function day to day.
+
+Stage 2 — Deconstruction. You're asking the hard questions. What do I actually believe? Who am I outside of this? This stage is uncomfortable and necessary.
+
+Stage 3 — Rebuilding. You're not who you were. And you're starting to see that might be okay.
+
+None of these stages have a set timeline. And they're not always linear — you can cycle back.
+
+Which stage resonates most with where you are right now? Hit reply — I'm genuinely curious.
+
+Crystal`
+  },
+  {
+    id: 's5', num: 5, delay: 'Day 10',
+    subject: 'What working through this actually looks like',
+    purpose: 'Introduce the workshop concept softly',
+    cta: 'Learn more about the upcoming workshop: [LINK]',
+    body: `Hi [First Name],
+
+I've been thinking about what actually moves the needle for people healing from religious trauma.
+
+It's not just information. You can read every book and still feel stuck.
+
+What works is community + structure + someone who's been through it holding the space.
+
+That's what I'm building next. A workshop — online and in person — where we do this work together. Not a lecture. A real guided process for people who are serious about moving forward.
+
+I'm putting together the first one now. If you want to be the first to hear about it, reply with "workshop" and I'll add you to the early list.
+
+No pressure. But if you've been feeling like you need more than videos and books, this might be it.
+
+Crystal`
+  },
+  {
+    id: 's6', num: 6, delay: 'Day 14',
+    subject: 'A question I get asked a lot',
+    purpose: 'Handle objections + keep relationship warm',
+    cta: 'Continue the conversation on YouTube',
+    body: `Hi [First Name],
+
+"Is it possible to have a spiritual life after leaving?"
+
+I get this one more than almost any other question.
+
+My honest answer: yes. But it looks different for everyone — and that's exactly the point.
+
+For some people it means building an entirely new framework. For others it means reclaiming parts of spirituality that were hijacked. For others it means releasing the concept entirely, and finding meaning somewhere else.
+
+None of those paths are wrong.
+
+What I've noticed is that the people who do best are the ones who give themselves permission to not have it figured out yet.
+
+If this is something you're wrestling with, I made a video on it here: [LINK]
+
+More soon,
+Crystal`
+  },
+  {
+    id: 's7', num: 7, delay: 'Day 21',
+    subject: 'What\'s next for you',
+    purpose: 'Soft close — workshop CTA + keep the door open',
+    cta: 'Join the workshop waitlist or book a discovery call',
+    body: `Hi [First Name],
+
+You've been on this list for a few weeks now. I hope something in these emails has been useful.
+
+I want to be straight with you about what I offer:
+
+The YouTube channel is free and always will be. Come back every week for honest conversations about healing.
+
+When I launch my workshop — online and in person — it'll be for people who are ready to do the deeper work in a guided, supported structure. I'll send details when it's ready.
+
+And if you want to talk one-on-one about where you are and what might help, I do have a small number of spots for individual work. You can reach me at [EMAIL] to start a conversation.
+
+Whatever stage you're in — I'm glad you're here.
+
+Crystal
+
+P.S. If you know someone who needs this, forward them this email. You might be the first person in their life who takes their experience seriously.`
+  }
+];
+
+function initEmails() {
+  if (emails.length === 0) {
+    emails = STARTER_EMAILS.map(e => ({ ...e }));
+    save();
+  }
+}
+
+function openAddEmail() {
+  document.getElementById('modal-email-title').textContent = 'Add Email';
+  document.getElementById('edit-email-id').value = '';
+  ['e-subject','e-purpose','e-cta','e-body','e-delay'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('e-num').value = emails.length + 1;
+  openModal('modal-email');
+}
+
+function openEditEmail(id) {
+  const e = emails.find(x => x.id === id);
+  if (!e) return;
+  document.getElementById('modal-email-title').textContent = 'Edit Email';
+  document.getElementById('edit-email-id').value = id;
+  document.getElementById('e-num').value = e.num;
+  document.getElementById('e-delay').value = e.delay || '';
+  document.getElementById('e-subject').value = e.subject;
+  document.getElementById('e-purpose').value = e.purpose;
+  document.getElementById('e-cta').value = e.cta;
+  document.getElementById('e-body').value = e.body;
+  openModal('modal-email');
+}
+
+function saveEmail() {
+  const id = document.getElementById('edit-email-id').value;
+  const data = {
+    num: parseInt(document.getElementById('e-num').value) || emails.length + 1,
+    delay: document.getElementById('e-delay').value.trim(),
+    subject: document.getElementById('e-subject').value.trim(),
+    purpose: document.getElementById('e-purpose').value.trim(),
+    cta: document.getElementById('e-cta').value.trim(),
+    body: document.getElementById('e-body').value.trim(),
+  };
+  if (!data.subject) { alert('Add a subject line first.'); return; }
+  if (id) {
+    const idx = emails.findIndex(x => x.id === id);
+    emails[idx] = { ...emails[idx], ...data };
+  } else {
+    emails.push({ ...data, id: Date.now().toString() });
+  }
+  emails.sort((a, b) => a.num - b.num);
+  save();
+  renderEmails();
+  closeModal('modal-email');
+}
+
+function deleteEmail(id) {
+  if (!confirm('Delete this email?')) return;
+  emails = emails.filter(x => x.id !== id);
+  save();
+  renderEmails();
+}
+
+function toggleEmailBody(id) {
+  const body = document.getElementById('email-body-' + id);
+  body.classList.toggle('open');
+}
+
+function renderEmails() {
+  const list = document.getElementById('email-list');
+  list.innerHTML = '';
+  emails.forEach(e => {
+    const item = document.createElement('div');
+    item.className = 'email-item';
+    item.innerHTML = `
+      <div class="email-item-header" onclick="toggleEmailBody('${e.id}')">
+        <div class="email-num">${e.num}</div>
+        <div style="flex:1;">
+          <div class="email-subject">${escHtml(e.subject)}</div>
+          <div class="email-purpose">${escHtml(e.purpose)}</div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          ${e.delay ? `<span style="font-size:12px;color:var(--muted);">${escHtml(e.delay)}</span>` : ''}
+          <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();openEditEmail('${e.id}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteEmail('${e.id}')">✕</button>
+        </div>
+      </div>
+      <div class="email-body" id="email-body-${e.id}">
+        ${e.cta ? `<div style="margin-bottom:10px;"><span class="email-cta-badge">CTA</span> <span style="font-size:13px;color:var(--muted);margin-left:6px;">${escHtml(e.cta)}</span></div>` : ''}
+        <textarea onchange="updateEmailBody('${e.id}', this.value)">${escHtml(e.body)}</textarea>
+      </div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+function updateEmailBody(id, val) {
+  const e = emails.find(x => x.id === id);
+  if (e) { e.body = val; save(); }
+}
+
+function exportEmails() {
+  const seqName = document.getElementById('sequence-name').value || 'Welcome Sequence';
+  let out = `${seqName.toUpperCase()}\n${'='.repeat(seqName.length)}\n\n`;
+  emails.forEach(e => {
+    out += `EMAIL ${e.num}${e.delay ? ' — ' + e.delay : ''}\n`;
+    out += `Subject: ${e.subject}\n`;
+    out += `Purpose: ${e.purpose}\n`;
+    out += `CTA: ${e.cta}\n\n`;
+    out += e.body + '\n\n' + '-'.repeat(50) + '\n\n';
+  });
+  const blob = new Blob([out], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'email-sequence.txt';
+  a.click();
+}
+
+// ============================================================
+// PROMPTS
+// ============================================================
+const PROMPTS = [
+  {
+    name: '📝 Script from Title',
+    desc: 'CGE Scriptwriter — full teleprompter script',
+    text: `Video title: [YOUR TITLE HERE]
+
+Call to action: [e.g. "Download my free Religious Trauma Assessment in the description" — or type NONE]
+
+Additional details: [Anything specific you want mentioned, your personal angle, or NONE]
+
+Please write a full YouTube script for this video.`
+  },
+  {
+    name: '🎬 Holy Trifecta',
+    desc: 'Title + Thumbnail + Intro — the 3 things viewers see first',
+    text: `I need help packaging a YouTube video.
+
+The video is about: [YOUR TOPIC]
+My audience: middle-aged people healing from religious trauma, ex-Mormons, people in spiritual crisis
+
+Please build the Holy Trifecta — 3 title options, thumbnail concept, and 3 intro options.`
+  },
+  {
+    name: '📣 Community Post',
+    desc: 'New upload announcement for YouTube Community tab',
+    text: `Write a YouTube community post for a new video titled: [YOUR TITLE]
+
+Audience: middle-aged people healing from religious trauma
+Tone: warm, direct, new-upload announcement with urgency
+Length: under 40 words`
+  },
+  {
+    name: '🔍 SEO Description',
+    desc: 'Keyword-optimized video description',
+    text: `Create an SEO-optimized YouTube description for this video:
+Title: [YOUR TITLE]
+
+Transcript (paste here): [PASTE TRANSCRIPT]
+
+Keep it short, engaging, keyword-friendly. My most important links go ABOVE the description.`
+  },
+  {
+    name: '📌 Pinned Comment',
+    desc: 'First comment to pin — drives engagement + clicks',
+    text: `Write a pinned YouTube comment for a video about: [YOUR TOPIC]
+
+Include:
+- My main link: [YOUR LINK]
+- An engagement question that gets replies
+- A soft call to action
+
+Tone: conversational, warm, my voice (Crystal — ex-Mormon, licensed counselor, author)`
+  },
+  {
+    name: '💡 Video Idea Generator',
+    desc: '10 video ideas based on your niche',
+    text: `Generate 10 YouTube video ideas for my channel: Redefine Family
+
+My niche: middle-aged people healing from religious trauma, ex-Mormons, spiritual deconstruction
+My background: ex-Mormon, licensed mental health counselor, memoir author
+Goal: grow audience that converts to online and in-person workshop attendees
+
+For each idea give: title, hook angle, and the specific pain point it addresses.`
+  },
+  {
+    name: '📧 Email Draft',
+    desc: 'Single nurture email for your welcome sequence',
+    text: `Write an email for my welcome sequence.
+
+Context: my audience downloaded a Religious Trauma Assessment as a lead magnet. I'm a licensed counselor, ex-Mormon, and author. My goal is to build trust and eventually invite them to a healing workshop.
+
+Email purpose: [e.g. "Normalize their experience and share my story"]
+Email number in sequence: [e.g. Email 3]
+Call to action: [e.g. "Reply with their biggest question"]
+
+Tone: warm, direct, personal — not corporate.`
+  },
+  {
+    name: '🔎 SEO Title Check',
+    desc: '5 SEO-friendly title alternatives',
+    text: `Give me 5 SEO-friendly title options for a YouTube video about: [YOUR TOPIC]
+
+Requirements:
+- Main keyword at the front
+- Clickable but not clickbait
+- Audience: people healing from religious trauma / ex-Mormons
+
+My current working title: [YOUR CURRENT TITLE]`
+  },
+];
+
+function renderPrompts() {
+  const list = document.getElementById('prompt-list');
+  list.innerHTML = '';
+  PROMPTS.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'prompt-item';
+    item.innerHTML = `
+      <div class="prompt-header">
+        <div>
+          <div class="prompt-name">${p.name}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">${p.desc}</div>
+        </div>
+        <button class="copy-btn" id="copy-btn-${i}" onclick="copyPrompt(${i})">Copy</button>
+      </div>
+      <div class="prompt-text">${escHtml(p.text)}</div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+function copyPrompt(i) {
+  navigator.clipboard.writeText(PROMPTS[i].text).then(() => {
+    const btn = document.getElementById('copy-btn-' + i);
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ============================================================
+// UTIL
+// ============================================================
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+initEmails();
+renderVideos();
+renderEmails();
+renderPrompts();
+</script>
+</body>
+</html>
