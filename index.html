@@ -329,6 +329,13 @@
 // ============================================================
 // DATA
 // ============================================================
+const APP_VERSION = '6';
+if (localStorage.getItem('rf_version') !== APP_VERSION) {
+  localStorage.removeItem('rf_videos');
+  localStorage.removeItem('rf_emails');
+  localStorage.setItem('rf_version', APP_VERSION);
+}
+
 let videos = JSON.parse(localStorage.getItem('rf_videos') || '[]');
 let emails = JSON.parse(localStorage.getItem('rf_emails') || '[]');
 
@@ -971,7 +978,6 @@ initEmails();
 initVideos();
 renderVideos();
 renderEmails();
-renderPrompts();
 </script>
 </body>
 </html>
