@@ -148,6 +148,7 @@
   <nav>
     <button class="active" onclick="showPage('content')">Content</button>
     <button onclick="showPage('email')">Email Sequence</button>
+    <button onclick="showPage('social')">Social Media</button>
   </nav>
 </header>
 
@@ -245,6 +246,22 @@
   </div>
 
 
+  <!-- ===================== SOCIAL MEDIA PAGE ===================== -->
+  <div id="page-social" class="page">
+    <h2>Social Media Posts</h2>
+    <p class="subtitle">Ready-to-post content for Facebook and Instagram. Every post drives to the assessment or YouTube channel.</p>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div style="font-size:13px;color:var(--muted);line-height:1.7;">
+        <strong style="color:var(--text);">Your 2 CTAs for every post:</strong><br>
+        🔗 Assessment: <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;">https://redefine-family.kit.com/f671e306ce</code><br>
+        📺 YouTube: <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;">https://www.youtube.com/channel/UC_hPATHYg2TUXpYKlzwxkNQ</code>
+      </div>
+    </div>
+
+    <div id="social-post-list" class="prompt-list"></div>
+  </div>
+
 </main>
 
 <!-- ADD VIDEO MODAL -->
@@ -329,7 +346,7 @@
 // ============================================================
 // DATA
 // ============================================================
-const APP_VERSION = '9';
+const APP_VERSION = '10';
 if (localStorage.getItem('rf_version') !== APP_VERSION) {
   localStorage.removeItem('rf_videos');
   localStorage.removeItem('rf_emails');
@@ -990,6 +1007,226 @@ function copyPrompt(i) {
 }
 
 // ============================================================
+// ============================================================
+// SOCIAL MEDIA POSTS
+// ============================================================
+const SOCIAL_POSTS = [
+  {
+    id: 'sp1',
+    category: 'Attachment Styles',
+    platform: 'Facebook + Instagram',
+    caption: `Do you recognize yourself in one of these attachment styles?
+
+💔 Anxious Attachment
+"I need reassurance that I'm loved."
+
+🧊 Avoidant Attachment
+"I learned it was safer not to need anyone."
+
+🌪️ Disorganized Attachment
+"I crave connection, but closeness can feel scary."
+
+Our attachment patterns are not character flaws — they are survival strategies we developed to stay emotionally safe.
+
+Healing begins when we understand the story behind our reactions.
+
+✨ Not sure which one fits you? Start with my free Religious Trauma Assessment — link in bio.
+
+#AttachmentStyles #HealingJourney #TraumaRecovery #Relationships #RedefineFamily`
+  },
+  {
+    id: 'sp2',
+    category: 'Religious Trauma',
+    platform: 'Facebook + Instagram',
+    caption: `Nobody told me that leaving the church was just the beginning.
+
+I walked away at 25 thinking I was done.
+
+What I didn't know:
+— The shame travels with you
+— The guilt doesn't care that you stopped believing
+— Your nervous system doesn't update when your theology does
+
+21 years later, as a licensed therapist, I understand what was actually happening.
+
+It wasn't weakness. It was wiring.
+
+And it can be healed.
+
+✨ Wondering if what you experienced was religious trauma? I created a free assessment — link in bio.
+
+#ReligiousTrauma #ExMormon #FaithTransition #Healing #RedefineFamily`
+  },
+  {
+    id: 'sp3',
+    category: 'Religious Trauma',
+    platform: 'Facebook + Instagram',
+    caption: `"I should be over this by now."
+
+If you've said that to yourself — I want you to hear this:
+
+There is no timeline for healing from a system that shaped your entire identity.
+
+You didn't just leave a church. You left:
+— A community
+— A worldview
+— A version of yourself
+— Relationships built on shared belief
+— The certainty of knowing exactly who you were
+
+That kind of grief doesn't have a deadline.
+
+You're not behind. You're healing.
+
+✨ New video on my channel this week — link in bio.
+
+#ReligiousTrauma #FaithDeconstruction #ExMormon #HealingJourney #RedefineFamily`
+  },
+  {
+    id: 'sp4',
+    category: 'Faith Deconstruction — Gen X',
+    platform: 'Facebook + Instagram',
+    caption: `Faith deconstruction in your 40s and 50s hits differently.
+
+And nobody is talking about that.
+
+At 22 you're dismantling beliefs.
+At 48 you're dismantling a life.
+
+Your marriage. Your friendships. Your community. Your identity. All of it was built on that foundation.
+
+When the foundation cracks — everything built on top of it shakes.
+
+That's not a midlife crisis. That's courage.
+
+✨ I made a full video on this — watch it on my YouTube channel. Link in bio.
+
+#FaithDeconstruction #GenX #ReligiousTrauma #MiddleAge #ExMormon #RedefineFamily`
+  },
+  {
+    id: 'sp5',
+    category: 'Shame + Guilt',
+    platform: 'Facebook + Instagram',
+    caption: `Why do you still feel guilty when you don't even believe anymore?
+
+Because guilt from religion isn't logical. It's neurological.
+
+You spent years in a system where:
+— Your worth was conditional on obedience
+— Doubt was dangerous
+— Your body's instincts were "sinful"
+
+Your nervous system learned to police itself.
+
+That doesn't disappear when you stop attending.
+
+It heals when you understand where it came from.
+
+✨ Start here: my free Religious Trauma Assessment — link in bio.
+
+#ReligiousTrauma #Shame #Guilt #ExMormon #NervousSystemHealing #RedefineFamily`
+  },
+  {
+    id: 'sp6',
+    category: 'Identity',
+    platform: 'Facebook + Instagram',
+    caption: `"If I'm not Mormon anymore… who am I?"
+
+This is the question nobody prepares you for.
+
+The church answered everything before you had a chance to ask:
+— Who you are
+— What you're worth
+— Who you're allowed to love
+— What your body is for
+— What happens when you die
+
+When that framework goes — you don't just lose beliefs.
+You lose the questions.
+
+The work of figuring out who you actually are — after all of that — is some of the most important work a person can do.
+
+You're not lost. You're becoming.
+
+✨ Watch my YouTube channel for weekly conversations about this. Link in bio.
+
+#IdentityReconstruction #ExMormon #FaithTransition #WhoAmI #ReligiousTrauma #RedefineFamily`
+  },
+  {
+    id: 'sp7',
+    category: 'Family Relationships',
+    platform: 'Facebook + Instagram',
+    caption: `Your family didn't stop loving you.
+
+But something shifted. And you can feel it.
+
+The conversations are careful now.
+Holidays have an undercurrent.
+There are topics nobody touches.
+
+When you leave a high-control religion, you don't just change your beliefs — you change the relational contract your family thought was permanent.
+
+Their reaction isn't always personal. It's fear.
+
+That doesn't make it less painful.
+
+And it doesn't mean you made the wrong choice.
+
+✨ New video this week on navigating family after leaving religion — link in bio.
+
+#FamilyEstrangement #ReligiousTrauma #ExMormon #FaithTransition #Boundaries #RedefineFamily`
+  },
+  {
+    id: 'sp8',
+    category: 'Book — Drowning in Doctrine',
+    platform: 'Facebook + Instagram',
+    caption: `I wrote the book I needed when I was drowning.
+
+Drowning in Doctrine is my memoir — the real story of growing up Mormon, leaving, and rebuilding a life I actually chose.
+
+Not a how-to. Not a takedown. A true account of what it costs to finally be honest with yourself inside a system that makes honesty dangerous.
+
+If you've ever felt like your story was too complicated to explain — this book might be the first place you feel understood.
+
+📘 Paperback: https://books.by/redefine-family
+🎧 Audiobook on Audible
+
+Link in bio.
+
+#DrowningInDoctrine #ExMormon #ReligiousTrauma #Memoir #FaithTransition #RedefineFamily`
+  },
+];
+
+function renderSocialPosts() {
+  const list = document.getElementById('social-post-list');
+  if (!list) return;
+  list.innerHTML = '';
+  SOCIAL_POSTS.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'prompt-item';
+    item.innerHTML = `
+      <div class="prompt-header">
+        <div>
+          <div class="prompt-name">${escHtml(p.category)}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">${escHtml(p.platform)}</div>
+        </div>
+        <button class="copy-btn" id="scopy-btn-${i}" onclick="copySocialPost(${i})">Copy</button>
+      </div>
+      <div class="prompt-text">${escHtml(p.caption)}</div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+function copySocialPost(i) {
+  navigator.clipboard.writeText(SOCIAL_POSTS[i].caption).then(() => {
+    const btn = document.getElementById('scopy-btn-' + i);
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
 // UTIL
 // ============================================================
 function escHtml(str) {
@@ -1003,6 +1240,7 @@ initEmails();
 initVideos();
 renderVideos();
 renderEmails();
+renderSocialPosts();
 </script>
 </body>
 </html>
