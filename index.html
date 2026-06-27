@@ -354,7 +354,7 @@
 // ============================================================
 // DATA
 // ============================================================
-const APP_VERSION = '11';
+const APP_VERSION = '12';
 if (localStorage.getItem('rf_version') !== APP_VERSION) {
   localStorage.removeItem('rf_videos');
   localStorage.removeItem('rf_emails');
@@ -663,125 +663,125 @@ P.S. If you know someone who needs this, forward them this email. You might be t
 ];
 
 const SCHEDULE = [
-  { week: 1,  date: 'Jul 7',  id: 'v1',  title: 'I Left the Mormon Church at 25 — 21 Years Later, Here\'s What I Know',                    thumb: 'CAN I HEAL?' },
-  { week: 2,  date: 'Jul 14', id: 'v2',  title: 'What Is Religious Trauma? Why Leaving Religion Doesn\'t Always Heal the Pain',            thumb: 'WAS IT TRAUMA?' },
-  { week: 3,  date: 'Jul 21', id: 'v4',  title: 'Faith Deconstruction in Your 40s and 50s: Why It Hits Different',                         thumb: 'WHY NOW?' },
-  { week: 4,  date: 'Jul 28', id: 'v3',  title: 'Why You Still Feel Guilty After Leaving Religion',                                        thumb: 'WHY THE GUILT?' },
-  { week: 5,  date: 'Aug 4',  id: 'v5',  title: 'The Attachment Style Religion Gave You (And How It\'s Affecting Your Relationships)',     thumb: 'AM I BROKEN?' },
-  { week: 6,  date: 'Aug 11', id: 'v6',  title: 'Anxious Attachment After Leaving the Church: Why You\'re Still Waiting to Be Rejected',  thumb: 'WHY AM I LIKE THIS?' },
-  { week: 7,  date: 'Aug 18', id: 'v10', title: 'Why Does My Family Feel Different Now? Navigating Relationships After Leaving Religion',  thumb: 'THEY DON\'T UNDERSTAND' },
-  { week: 8,  date: 'Aug 25', id: 'v8',  title: 'Why You Can\'t Stop People-Pleasing (And Where It Really Comes From)',                   thumb: 'WHY CAN\'T I SAY NO?' },
-  { week: 9,  date: 'Sep 1',  id: 'v7',  title: 'Spiritual Abuse Recovery: What It Actually Takes to Heal (From a Licensed Therapist)',   thumb: 'WILL I HEAL?' },
-  { week: 10, date: 'Sep 8',  id: 'v13', title: 'Choosing Not to Have Children in My 20s — And Why It Was the Right Decision',            thumb: 'I CHOSE ME' },
-  { week: 11, date: 'Sep 15', id: 'v9',  title: 'Reparenting Yourself at 40, 50, and Beyond — It\'s Not Too Late',                        thumb: 'AM I TOO LATE?' },
-  { week: 12, date: 'Sep 22', id: 'v12', title: 'What Mormon Culture Did to Your Body (And How to Reclaim It)',                           thumb: 'MY BODY WAS THEIRS' },
+  { week: 1,  date: 'Jul 7',  id: 'v1',  title: 'I Left the Mormon Church 20 Years Ago — And I\'m Still Dealing With the Sh*t',           thumb: 'STILL HEALING?' },
+  { week: 2,  date: 'Jul 14', id: 'v2',  title: 'I Left 20 Years Ago. So Why Does It Still Hurt?',                                        thumb: 'WAS IT TRAUMA?' },
+  { week: 3,  date: 'Jul 21', id: 'v4',  title: 'I Left the Church in My 20s. My Real Faith Crisis Hit at 40.',                           thumb: 'WHY NOW?' },
+  { week: 4,  date: 'Jul 28', id: 'v3',  title: 'I Don\'t Even Believe Anymore — So Why Do I Still Feel Guilty?',                        thumb: 'WHY THE GUILT?' },
+  { week: 5,  date: 'Aug 4',  id: 'v5',  title: 'The Attachment Wounds I Didn\'t Know the Church Gave Me',                               thumb: 'AM I BROKEN?' },
+  { week: 6,  date: 'Aug 11', id: 'v6',  title: 'I Left 20 Years Ago and I\'m Still Waiting to Be Rejected',                             thumb: 'WHY AM I LIKE THIS?' },
+  { week: 7,  date: 'Aug 18', id: 'v10', title: 'My Family Acts Like I Betrayed Them — And That Was 20 Years Ago',                        thumb: 'THEY DON\'T UNDERSTAND' },
+  { week: 8,  date: 'Aug 25', id: 'v8',  title: 'I Left the Church But I Still Can\'t Say No',                                           thumb: 'WHY CAN\'T I SAY NO?' },
+  { week: 9,  date: 'Sep 1',  id: 'v7',  title: 'Here\'s What Actually Moved the Needle on My Religious Trauma Healing (20 Years In)',    thumb: 'WILL I HEAL?' },
+  { week: 10, date: 'Sep 8',  id: 'v13', title: 'I Chose Not to Have Kids at 25. Here\'s Why I Don\'t Regret It.',                       thumb: 'I CHOSE ME' },
+  { week: 11, date: 'Sep 15', id: 'v9',  title: 'I Started Reparenting Myself at 40. It\'s Not Too Late and Here\'s What It Looks Like.', thumb: 'AM I TOO LATE?' },
+  { week: 12, date: 'Sep 22', id: 'v12', title: 'What the Church Did to My Body — And How I\'m Getting It Back',                         thumb: 'MY BODY WAS THEIRS' },
 ];
 
 const STARTER_VIDEOS = [
   {
     id: 'v1', status: 'idea', week: 1,
-    title: 'I Left the Mormon Church at 25 — 21 Years Later, Here\'s What I Know',
-    pain: 'Gen X adults who left years ago but still feel the damage and wonder if healing is possible',
-    hook: '🖼 Thumbnail: CAN I HEAL? | Origin story — long-term perspective from a licensed therapist who lived it',
-    notes: 'Keywords: ex-Mormon, leaving the church, religious trauma healing. Foundation video. Personal story: "bad" Mormon at 14, married at 17, hard stop at 25, licensed therapist 2014.'
+    title: 'I Left the Mormon Church 20 Years Ago — And I\'m Still Dealing With the Sh*t',
+    pain: 'Gen X adults who left years ago and thought they were fine — until they weren\'t',
+    hook: '🖼 Thumbnail: STILL HEALING? | Raw origin story — "I\'m a licensed therapist and I\'m still in it. Here\'s what 20 years of healing actually looks like."',
+    notes: 'Keywords: ex-Mormon healing, religious trauma recovery, leaving the church. Foundation video. Personal timeline: "bad" Mormon at 14, married at 17, hard stop at 25, licensed therapist 2014, still processing.'
   },
   {
     id: 'v2', status: 'idea', week: 2,
-    title: 'What Is Religious Trauma? Why Leaving Religion Doesn\'t Always Heal the Pain',
-    pain: 'Gen X adults who don\'t know if what they experienced counts — minimizing their own story',
-    hook: '🖼 Thumbnail: WAS IT TRAUMA? | Their private midnight question — connects directly to the assessment',
-    notes: 'Keywords: religious trauma, spiritual abuse recovery, ex-Mormon. CTA to assessment is natural: "If you\'ve ever wondered was it trauma — I made a free assessment."'
+    title: 'I Left 20 Years Ago. So Why Does It Still Hurt?',
+    pain: 'They left, time has passed, life moved on — but the pain didn\'t. And they don\'t understand why.',
+    hook: '🖼 Thumbnail: WAS IT TRAUMA? | Names the confusion — "You\'re supposed to be over it. So why aren\'t you?" Connects directly to the free assessment.',
+    notes: 'Keywords: religious trauma, why does leaving still hurt, ex-Mormon. CTA: "If you\'re asking this question, take my free Religious Trauma Assessment."'
   },
   {
     id: 'v3', status: 'idea', week: 4,
-    title: 'Why You Still Feel Guilty After Leaving Religion',
-    pain: 'Guilt that makes no sense — they left, they don\'t believe anymore, but the shame won\'t go away',
-    hook: '🖼 Thumbnail: WHY THE GUILT? | Names the private feeling they can\'t explain to anyone',
-    notes: 'Keywords: ex-Mormon healing, religious trauma shame, faith deconstruction. Very high search and emotional resonance.'
+    title: 'I Don\'t Even Believe Anymore — So Why Do I Still Feel Guilty?',
+    pain: 'The belief is gone but the guilt stayed. Shame that has no logical source anymore.',
+    hook: '🖼 Thumbnail: WHY THE GUILT? | Names the private absurdity they feel but can\'t say out loud',
+    notes: 'Keywords: ex-Mormon guilt, religious trauma shame, leaving the church. High emotional resonance — this is one of the most common experiences people can\'t explain.'
   },
   {
     id: 'v4', status: 'scripting', week: 3,
-    title: 'Faith Deconstruction in Your 40s and 50s: Why It Hits Different',
-    pain: 'Gen X adults deconstructing later in life — marriages, adult kids, whole identity built around the church',
-    hook: '🖼 Thumbnail: WHY NOW? | Age-specific angle — speaks directly to the unique challenges of midlife deconstruction',
-    notes: 'Keywords: faith deconstruction, leaving the church, religious trauma Gen X. Script already written. Very underserved topic.'
+    title: 'I Left the Church in My 20s. My Real Faith Crisis Hit at 40.',
+    pain: 'Left years ago, thought they were past it — then midlife brings it all back harder',
+    hook: '🖼 Thumbnail: WHY NOW? | "I thought I was done with this. I was not." Speaks directly to Gen X who expected to be healed by now.',
+    notes: 'Keywords: faith deconstruction, religious trauma Gen X, leaving the church midlife. Script already written. Very underserved topic — nobody talks about the delayed crisis.'
   },
   {
     id: 'v5', status: 'idea', week: 5,
-    title: 'The Attachment Style Religion Gave You (And How It\'s Affecting Your Relationships)',
-    pain: 'Can\'t trust people, fear of abandonment, people-pleasing — and not realizing religion is the root',
-    hook: '🖼 Thumbnail: AM I BROKEN? | Connects attachment wounds directly to religious upbringing',
-    notes: 'Keywords: attachment styles, religious trauma, spiritual abuse recovery. Very high search demand for attachment content.'
+    title: 'The Attachment Wounds I Didn\'t Know the Church Gave Me',
+    pain: 'Relationship patterns that make no sense until you trace them back to religious conditioning',
+    hook: '🖼 Thumbnail: AM I BROKEN? | "I spent years in therapy before I connected this to the church." Personal + therapist lens.',
+    notes: 'Keywords: attachment styles, religious trauma, spiritual abuse recovery. High search demand. The "I didn\'t know" framing is key — it\'s a revelation video.'
   },
   {
     id: 'v6', status: 'idea', week: 6,
-    title: 'Anxious Attachment After Leaving the Church: Why You\'re Still Waiting to Be Rejected',
-    pain: 'Hypervigilance, walking on eggshells, terrified of being shunned again — even outside religion',
-    hook: '🖼 Thumbnail: WHY AM I LIKE THIS? | Names the pattern ex-Mormons feel but can\'t explain',
-    notes: 'Keywords: anxious attachment, ex-Mormon, leaving the church. Extremely searchable. Mormon shunning creates textbook anxious attachment.'
+    title: 'I Left 20 Years Ago and I\'m Still Waiting to Be Rejected',
+    pain: 'Hypervigilance, bracing for the shun — even with people who have nothing to do with religion',
+    hook: '🖼 Thumbnail: WHY AM I LIKE THIS? | Crystal\'s personal experience — "This is still in my body. Here\'s where it comes from."',
+    notes: 'Keywords: anxious attachment, ex-Mormon, leaving the church. Mormon shunning creates textbook anxious attachment. Raw first-person framing makes this uniquely credible.'
   },
   {
     id: 'v7', status: 'idea', week: 9,
-    title: 'Spiritual Abuse Recovery: What It Actually Takes to Heal (From a Licensed Therapist)',
-    pain: 'Adults who know they were spiritually abused but have no roadmap for recovery',
-    hook: '🖼 Thumbnail: WILL I HEAL? | Authority angle — clinical + personal credibility, practical steps',
-    notes: 'Keywords: spiritual abuse recovery, religious trauma, ex-Mormon healing. Your license makes this uniquely credible. High search volume.'
+    title: 'Here\'s What Actually Moved the Needle on My Religious Trauma Healing (20 Years In)',
+    pain: 'Adults who\'ve tried everything and are still stuck — need a real roadmap from someone who\'s been in it',
+    hook: '🖼 Thumbnail: WILL I HEAL? | Not a theory — real things that worked after 20 years. Clinical + personal. The most authoritative voice on the topic.',
+    notes: 'Keywords: religious trauma healing, spiritual abuse recovery, ex-Mormon. Your license + your lived experience = nobody else can make this video. High search volume.'
   },
   {
     id: 'v8', status: 'idea', week: 8,
-    title: 'Why You Can\'t Stop People-Pleasing (And Where It Really Comes From)',
-    pain: 'Exhausted from always putting others first, no sense of self, can\'t say no',
-    hook: '🖼 Thumbnail: WHY CAN\'T I SAY NO? | Root cause — traces people-pleasing to developmental trauma + religious conditioning',
-    notes: 'Keywords: people-pleasing, developmental trauma, religious trauma. Massive search volume. Works across all pillars.'
+    title: 'I Left the Church But I Still Can\'t Say No',
+    pain: 'Exhausted from over-giving, no sense of self, saying yes to everything — and tracing it back to religious conditioning',
+    hook: '🖼 Thumbnail: WHY CAN\'T I SAY NO? | "I left. I\'m a licensed therapist. I still struggle with this. Here\'s why." Massive search volume.',
+    notes: 'Keywords: people-pleasing, developmental trauma, religious trauma. Works across all pillars. First-person frame makes it hit harder than generic content.'
   },
   {
     id: 'v9', status: 'idea', week: 11,
-    title: 'Reparenting Yourself at 40, 50, and Beyond — It\'s Not Too Late',
-    pain: 'Gen X adults who feel too old to heal or think the damage from childhood is permanent',
-    hook: '🖼 Thumbnail: AM I TOO LATE? | Hope angle — directly addresses the "it\'s too late for me" belief',
-    notes: 'Keywords: reparenting, developmental trauma, healing in midlife. Age-specific framing sets this apart from generic content.'
+    title: 'I Started Reparenting Myself at 40. It\'s Not Too Late and Here\'s What It Looks Like.',
+    pain: 'Gen X adults who feel too old to heal or think the window has closed',
+    hook: '🖼 Thumbnail: AM I TOO LATE? | Hope + realism — "I started this work at 40. It\'s harder than starting young. It\'s also completely possible."',
+    notes: 'Keywords: reparenting, developmental trauma, healing in midlife. Crystal\'s personal experience makes this more than a how-to video.'
   },
   {
     id: 'v10', status: 'idea', week: 7,
-    title: 'Why Does My Family Feel Different Now? Navigating Relationships After Leaving Religion',
-    pain: 'Family acts like you betrayed them — holidays are tense, conversations are careful, the relationship has shifted',
-    hook: '🖼 Thumbnail: THEY DON\'T UNDERSTAND | Names the private family grief nobody talks about',
-    notes: 'Keywords: religious trauma family, ex-Mormon family relationships, faith deconstruction. Extremely shareable.'
+    title: 'My Family Acts Like I Betrayed Them — And That Was 20 Years Ago',
+    pain: 'The relationship never fully recovered — walking on eggshells at holidays, conversations that are carefully avoided',
+    hook: '🖼 Thumbnail: THEY DON\'T UNDERSTAND | Names the slow ongoing grief of family estrangement nobody talks about',
+    notes: 'Keywords: religious trauma family, ex-Mormon family relationships, faith deconstruction. Extremely shareable. Parents send to adult kids. Adult kids send to parents.'
   },
   {
     id: 'v11', status: 'idea',
-    title: 'When Your Adult Kids Leave the Church and You Don\'t Know What to Do',
+    title: 'Your Adult Kids Left the Church and You Don\'t Know What to Do',
     pain: 'Gen X parents watching their kids deconstruct — grief, fear of losing the relationship, identity clash',
-    hook: '🖼 Thumbnail: LOSING MY KIDS? | Speaks to the parent side — huge underserved audience',
-    notes: 'Keywords: faith deconstruction, leaving the church, religious trauma family. Adult kids send this to parents and vice versa. Save for after Week 12.'
+    hook: '🖼 Thumbnail: LOSING MY KIDS? | The parent side — huge underserved audience. Crystal has both the therapist lens and the daughter lens.',
+    notes: 'Keywords: faith deconstruction, leaving the church, religious trauma family. Save for after Week 12.'
   },
   {
     id: 'v12', status: 'idea', week: 12,
-    title: 'What Mormon Culture Did to Your Body (And How to Reclaim It)',
-    pain: 'Shame, modesty culture, worthiness tied to appearance — still showing up decades later',
-    hook: '🖼 Thumbnail: MY BODY WAS THEIRS | Bold and specific — names something ex-Mormons recognize immediately',
+    title: 'What the Church Did to My Body — And How I\'m Getting It Back',
+    pain: 'Shame, modesty culture, worthiness tied to appearance — still living in the body decades later',
+    hook: '🖼 Thumbnail: MY BODY WAS THEIRS | Raw and specific — "I\'m still undoing this in my 40s." Names something ex-Mormon women recognize immediately.',
     notes: 'Keywords: Mormon religious trauma, spiritual abuse recovery, ex-Mormon women. Strong Gen X female audience. Very shareable.'
   },
   {
     id: 'v13', status: 'scripting', week: 10,
-    title: 'Choosing Not to Have Children in My 20s — And Why It Was the Right Decision',
-    pain: 'Women who chose not to have kids inside or after religion and carry shame about it',
-    hook: '🖼 Thumbnail: I CHOSE ME | Bold, countercultural for Mormon audience, validating for women who made the same choice',
+    title: 'I Chose Not to Have Kids at 25. Here\'s Why I Don\'t Regret It.',
+    pain: 'Women who chose not to have children inside or after religion and still carry shame about it',
+    hook: '🖼 Thumbnail: I CHOSE ME | "In a church where motherhood is your divine purpose, I said no. Here\'s what happened." Bold, personal, countercultural.',
     notes: 'Keywords: childfree, religious trauma, ex-Mormon women. Crystal\'s personal story. Note: infertility journey at 35 is a SEPARATE follow-up video.'
   },
   {
     id: 'v14', status: 'idea',
-    title: 'What I See in Clients Who Were Pressured to Have Kids Inside Religion',
+    title: 'As a Therapist, Here\'s What I See in Women Who Were Told Kids Were Their Purpose',
     pain: 'Women who had kids inside the faith and are reckoning with the pressure, loss of self, resentment they can\'t name',
-    hook: '🖼 Thumbnail: DID I CHOOSE THIS? | Therapist lens — names the damage of "motherhood is your divine purpose" messaging',
+    hook: '🖼 Thumbnail: DID I CHOOSE THIS? | Therapist lens — "I see this in my office every week." Names the damage of "motherhood is your divine role."',
     notes: 'Keywords: religious trauma, spiritual abuse, ex-Mormon women, developmental trauma. Save for after Week 12.'
   },
   {
     id: 'v15', status: 'idea',
-    title: 'My Infertility Journey at 35 — What It Taught Me About Faith, Body, and Choice',
-    pain: 'Women who experienced infertility, especially after leaving religion where motherhood was the ultimate identity',
-    hook: '🖼 Thumbnail: WHY MY BODY? | Vulnerable personal story — grief, body autonomy, identity outside motherhood',
-    notes: 'Keywords: infertility, religious trauma, ex-Mormon. Third in the childfree series. Crystal\'s personal story — film when ready.'
+    title: 'My Infertility Journey at 35 — What It Taught Me About My Body, My Faith, and My Choice',
+    pain: 'Women who experienced infertility, especially after a religion that made motherhood their whole identity',
+    hook: '🖼 Thumbnail: WHY MY BODY? | Crystal\'s raw personal story — grief, body autonomy, identity outside motherhood. Film when ready.',
+    notes: 'Keywords: infertility, religious trauma, ex-Mormon. Third in the childfree/choice series. Crystal\'s personal story — highest vulnerability, highest connection potential.'
   },
 ];
 
